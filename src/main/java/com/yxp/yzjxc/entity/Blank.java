@@ -6,18 +6,13 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/**
- *  软件使用公司信息类
- *
- */
-@Document(collection = "corpmsg")
+@Document(collection = "blank")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CorpMsg {
+public class Blank {
     @Id
-    private String corpName ;
-    private String address ;
-    private String tel;
-    private String linkman;
+   private String  blankId;
+   private String  blankName;
+   private String  memo;
 }
