@@ -1,7 +1,7 @@
 package com.yxp.yzjxc.serviceimpl.sys;
 
 import com.yxp.yzjxc.entity.Employee;
-import com.yxp.yzjxc.repo.sys.IemployeeRepo;
+import com.yxp.yzjxc.repo.sys.EmployeeRepo;
 import com.yxp.yzjxc.service.sys.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,7 +14,7 @@ import java.util.Date;
 
 public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
-    private IemployeeRepo repo;
+    private EmployeeRepo repo;
     @Override
     public boolean insertEmployee(Employee employee) {
         return false;
