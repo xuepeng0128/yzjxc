@@ -36,10 +36,63 @@ public class InitSysServiceImpl implements InitSysService {
         List<Menu> menulist=  JSON.parseArray(menuJsonstr(),Menu.class);
         menuRepo.saveAll(menulist);
        //4.存储过程
+           //1.生成订单号
         ScriptOperations scriptOps = mongoTemplate.scriptOps();
-        ExecutableMongoScript script = new ExecutableMongoScript("function(x) { return x; }");
-        scriptOps.register(new NamedMongoScript("testfunfun", script)); //指定脚本名称
-      //  scriptOps.execute(script, "directly execute script");
+        String makeBillIdStr="function (billkind){\n" +
+                "     var maxCode='';\n" +
+                "     var nowDate = new Date();\n" +
+                "     var year =nowDate.getFullYear().toString();\n" +
+                "     var month = (nowDate.getMonth() +1) >=10 ?  (nowDate.getMonth() +1).toString() : '0'+ (nowDate.getMonth() +1).toString();\n" +
+                "     var date = nowDate.getDate() >=10 ? nowDate.getDate().toString() :  ('0' + nowDate.getDate());\n" +
+                "     var nowDatestr = year +month + date;\n" +
+                "     var mid;\n" +
+                "     if (billkind ==='orderbill'){\n" +
+                "          mid= db.getCollection('orderbill').aggregate([\n" +
+                "             {$match : { orderId : eval('/' + nowDatestr + '/')}}  ,\n" +
+                "             {$group :{\n" +
+                "                       \"_id\" :{},\n" +
+                "                       maxid :{$max : \"$orderId\"}\n" +
+                "                   }\n" +
+                "             } ,\n" +
+                "             {\n" +
+                "                 $project : {\n" +
+                "                              \"_id\" :0,\n" +
+                "                              \"maxid\" : \"$maxid\"                         \n" +
+                "                            }\n" +
+                "                 \n" +
+                "             }   \n" +
+                "             \n" +
+                "         \n" +
+                "         ]);\n" +
+                "            \n" +
+                "         \n" +
+                "     }else if (billkind ==='purchasebill'){\n" +
+                "         \n" +
+                "     }else if (billkind ==='allocatebill'){\n" +
+                "     }   \n" +
+                "    \n" +
+                "         if (!mid.maxid){          \n" +
+                "             maxCode= billkind.substring(0,2) + nowDatestr +'-0001';\n" +
+                "         } else {\n" +
+                "             var flowcode=parseInt(mid.maxid.split('-')[1]) +1 ;\n" +
+                "             if(flowcode<10)\n" +
+                "                maxCode=billkind.substring(0,2) + nowDatestr + '-000' + flowcode; \n" +
+                "             else if(flowcode>=10 && flowcode<100)\n" +
+                "                 maxCode=billkind.substring(0,2) + nowDatestr + '-00' + flowcode; \n" +
+                "             else if(flowcode>=100 && flowcode<1000)\n" +
+                "                 maxCode=billkind.substring(0,2) + nowDatestr + '-0' + flowcode;     \n" +
+                "             else\n" +
+                "                 maxCode=billkind.substring(0,2) + nowDatestr + '-' + flowcode;              \n" +
+                "         }\n" +
+                "    \n" +
+                "    return maxCode;\n" +
+                "    \n" +
+                "}";
+
+
+        ExecutableMongoScript script = new ExecutableMongoScript(makeBillIdStr);
+        scriptOps.register(new NamedMongoScript("makeBillId", script)); //指定脚本名称
+       // scriptOps.execute(script, "directly execute script");
 
     }
 

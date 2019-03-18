@@ -4,11 +4,15 @@ import com.yxp.yzjxc.service.sys.InitSysService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.reactive.config.EnableWebFlux;
 
 @SpringBootApplication
 @Controller
+@EnableWebFlux
+@EnableReactiveMongoRepositories
 public class YzjxcApplication {
    @Autowired
     InitSysService svr;
