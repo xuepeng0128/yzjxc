@@ -39,6 +39,8 @@ public class OrderBillCtrl {
     }
     @GetMapping(value="/deleteOrderBill")
     public MessageModel deleteOrderBill(String orderId){
-       return null;
+        MessageModel m= new MessageModel();
+       m.setData( svr.deleteOrderBill(orderId).block());
+       return m;
     }
 }

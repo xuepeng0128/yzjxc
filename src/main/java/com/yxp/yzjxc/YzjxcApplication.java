@@ -11,8 +11,7 @@ import org.springframework.web.reactive.config.EnableWebFlux;
 
 @SpringBootApplication
 @Controller
-@EnableWebFlux
-@EnableReactiveMongoRepositories
+
 public class YzjxcApplication {
    @Autowired
     InitSysService svr;

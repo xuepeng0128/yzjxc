@@ -17,43 +17,43 @@ import org.springframework.util.ClassUtils;
 import java.io.Serializable;
 import java.util.List;
 
-public class MyReactiveMongoRespository<T, ID extends Serializable> extends SimpleReactiveMongoRepository {
-    public MyReactiveMongoRespository(@NonNull MongoEntityInformation entityInformation, @NonNull ReactiveMongoOperations mongoOperations,
-                                      MongoOperations mongoOperations1, MongoEntityInformation<T, ID> entityInformation1) {
-        super(entityInformation, mongoOperations);
-        this.mongoOperations = mongoOperations1;
-        this.entityInformation = entityInformation1;
-    }
-    private final MongoOperations mongoOperations;
-    private final MongoEntityInformation<T, ID> entityInformation;
-
-
-
-    //包含Example的方法
-    public <S extends T> Page<S> findAll(final Example<S> example, final Query query,
-                                         Pageable pageable){
-        Assert.notNull(example, "Sample must not be null!");
-        query.addCriteria((new Criteria()).alike(example)).with(pageable);
-        List<S> list = this.mongoOperations.find(query, example.getProbeType(),
-                this.entityInformation.getCollectionName());
-        return PageableExecutionUtils.getPage(list, pageable,
-                () -> mongoOperations.count(query,example.getProbeType(),
-                        entityInformation.getCollectionName()));
-    }
-
-    //去除Example的方法(大佬修改)
-    public <S extends T> Page<S> findAll(Query query, Pageable pageable, Class<S> clazz) {
-        final Class<S> clazz2  = (Class<S>) ClassUtils.getUserClass(clazz);
-        query.with(pageable);
-        List<S> list = this.mongoOperations.find(query,clazz,
-                this.entityInformation.getCollectionName());
-        return PageableExecutionUtils.getPage(list, pageable,
-                () -> mongoOperations.count(query,clazz2,
-                        entityInformation.getCollectionName()));
-    }
-
-
-
+public class MyReactiveMongoRespository<T, ID extends Serializable> { //extends SimpleReactiveMongoRepository
+ //   public MyReactiveMongoRespository(@NonNull MongoEntityInformation entityInformation, @NonNull ReactiveMongoOperations mongoOperations,
+//                                      MongoOperations mongoOperations1, MongoEntityInformation<T, ID> entityInformation1) {
+//        super(entityInformation, mongoOperations);
+//        this.mongoOperations = mongoOperations1;
+//        this.entityInformation = entityInformation1;
+//    }
+//    private final MongoOperations mongoOperations;
+//    private final MongoEntityInformation<T, ID> entityInformation;
+//
+//
+//
+//    //包含Example的方法
+//    public <S extends T> Page<S> findAll(final Example<S> example, final Query query,
+//                                         Pageable pageable){
+//        Assert.notNull(example, "Sample must not be null!");
+//        query.addCriteria((new Criteria()).alike(example)).with(pageable);
+//        List<S> list = this.mongoOperations.find(query, example.getProbeType(),
+//                this.entityInformation.getCollectionName());
+//        return PageableExecutionUtils.getPage(list, pageable,
+//                () -> mongoOperations.count(query,example.getProbeType(),
+//                        entityInformation.getCollectionName()));
+//    }
+//
+//    //去除Example的方法(大佬修改)
+//    public <S extends T> Page<S> findAll(Query query, Pageable pageable, Class<S> clazz) {
+//        final Class<S> clazz2  = (Class<S>) ClassUtils.getUserClass(clazz);
+//        query.with(pageable);
+//        List<S> list = this.mongoOperations.find(query,clazz,
+//                this.entityInformation.getCollectionName());
+//        return PageableExecutionUtils.getPage(list, pageable,
+//                () -> mongoOperations.count(query,clazz2,
+//                        entityInformation.getCollectionName()));
+//    }
+//
+//
+//
 
 
 
