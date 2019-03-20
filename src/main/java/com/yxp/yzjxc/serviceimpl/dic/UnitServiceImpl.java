@@ -5,15 +5,24 @@ import com.yxp.yzjxc.repo.dic.UnitRepo;
 import com.yxp.yzjxc.service.dic.UnitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 @Service
 public class UnitServiceImpl implements UnitService {
     @Autowired
     private UnitRepo repo;
+
+
     @Override
-    public void saveUnit(Unit unit) {
-         repo.save(unit);
+    public Mono<Unit> insertUnit(Unit unit) {
+           return repo.insert(unit);
+    }
+
+    @Override
+    public Mono<Unit> updateUnit(Unit unit) {
+          return repo.save(unit);
     }
 
     @Override
@@ -22,8 +31,8 @@ public class UnitServiceImpl implements UnitService {
     }
 
     @Override
-    public List<Unit> unitList() {
-        List<Unit> list =repo.findAll();
+    public Flux<Unit> unitList() {
+        Flux<Unit> list =repo.findAll();
         return list;
     }
 }

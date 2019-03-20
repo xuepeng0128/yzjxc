@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 public class PaymentMethod {
      @Id
-     private int paymentMethodId;
+     private Integer paymentMethodId;
      private String paymentMethodName;
      private String memo;
 
