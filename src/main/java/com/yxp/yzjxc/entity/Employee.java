@@ -34,7 +34,7 @@ public class Employee {
     private String address;
     private EducationLevel educationLevel;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date entryTime; // 入职时间
-    private List<Map<String,Object>> onDutyHis ; // 就职历史
+    private Date entryTime; // 入公司时间
+    private List<OnServe> onDutyHis ; // 就职历史
     private int dutyState; // 当前状态(1.在职，2.停职，3.离职)
 }
