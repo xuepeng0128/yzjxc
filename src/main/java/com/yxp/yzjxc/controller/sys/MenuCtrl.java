@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 
@@ -18,12 +19,10 @@ public class MenuCtrl {
     private MenuService svr;
 
     @GetMapping(value="/menuList")
-    public MessageModel menuList(){
+    public Flux<Menu> menuList(){
         MessageModel m = new MessageModel();
-        List<Menu> list =svr.menuList();
-        m.setData(list);
-        m.setResultCode("1");
-        return m;
+        Flux<Menu> list =svr.menuList();
+        return list;
     }
 
 

@@ -109,11 +109,16 @@ public class InitSysServiceImpl implements InitSysService {
                        "   },    " +
                         "   { 'menuId' :'002', 'menuName' :'库存管理', 'url' : '/','powers':'', 'subMenu':[" +
                         "                   { 'menuId' :'00201', 'menuName' :'仓库档案', 'url' : '/','powers':'', 'subMenu':[ ] }," +
-                        "                   { 'menuId' :'00202', 'menuName' :'产品档案', 'url' : '/','powers':'', 'subMenu':[ ] }," +
-                        "                   { 'menuId' :'00103', 'menuName' :'供货商分类', 'url' : '/','powers':'', 'subMenu':[ ] }," +
-                        "                   { 'menuId' :'00104', 'menuName' :'供货商管理', 'url' : '/','powers':'', 'subMenu':[ ] }," +
-                        "                   { 'menuId' :'00105', 'menuName' :'采购订单', 'url' : '/','powers':'', 'subMenu':[ ] }," +
-                        "                   { 'menuId' :'00106', 'menuName' :'采购入库单', 'url' : '/','powers':'', 'subMenu':[ ] }" +
+                        "                   { 'menuId' :'00202', 'menuName' :'仓库调拨', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "                   { 'menuId' :'00203', 'menuName' :'盘点单', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "                   { 'menuId' :'00204', 'menuName' :'库存量表', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "               ] " +
+                        "   }  ,   " +
+                        "   { 'menuId' :'003', 'menuName' :'销售管理', 'url' : '/','powers':'', 'subMenu':[" +
+                        "                   { 'menuId' :'00301', 'menuName' :'客户档案', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "                   { 'menuId' :'00302', 'menuName' :'仓库调拨', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "                   { 'menuId' :'00203', 'menuName' :'盘点单', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "                   { 'menuId' :'00204', 'menuName' :'库存量表', 'url' : '/','powers':'', 'subMenu':[ ] }," +
                         "               ] " +
                         "   }     " +
                        "]";

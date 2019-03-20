@@ -5,6 +5,7 @@ import com.yxp.yzjxc.repo.sys.MenuRepo;
 import com.yxp.yzjxc.service.sys.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 
@@ -13,8 +14,8 @@ public class MenuServiceImpl implements MenuService {
     @Autowired
     private MenuRepo repo;
     @Override
-    public List<Menu> menuList() {
-        List<Menu> list = repo.findAll();
+    public Flux<Menu> menuList() {
+        Flux<Menu> list = repo.findAll();
         return list;
     }
 }
