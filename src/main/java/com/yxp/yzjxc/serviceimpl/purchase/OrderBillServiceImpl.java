@@ -7,11 +7,8 @@ import com.yxp.yzjxc.entity.User;
 import com.yxp.yzjxc.repo.purchase.OrderBillRepo;
 import com.yxp.yzjxc.service.purchase.OrderBillService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.ReactiveMongoOperations;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.ScriptOperations;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
@@ -19,8 +16,7 @@ import org.springframework.data.mongodb.core.aggregation.Field;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+
 
 import java.util.*;
 
@@ -44,7 +40,7 @@ public class OrderBillServiceImpl implements OrderBillService {
 
 
     @Override
-    public Flux<OrderBill> orderBillList(String orderId,String supplierName,String paymentAgreementId,String otherAgreement,String pageSize,String pageNo) {
+    public List<OrderBill> orderBillList(String orderId,String supplierName,String paymentAgreementId,String otherAgreement,String pageSize,String pageNo) {
         Criteria criteria = new Criteria( );
         if (orderId!=null && !orderId.equals(""))
         {
@@ -79,7 +75,7 @@ public class OrderBillServiceImpl implements OrderBillService {
                 Aggregation.limit(1)
         );
 
-        Flux<OrderBill> result= reactiveMongoTemplate.aggregate(agg,"orderbill",OrderBill.class);
+        List<OrderBill> result= mongoTemplate.aggregate(agg,"orderbill",OrderBill.class).getMappedResults();
 //        List<OrderBill> listRes = result.collectList().block();
 //        Map<String,Object> re = new HashMap<String,Object>();
 //        re.put("result",listRes);
@@ -87,30 +83,25 @@ public class OrderBillServiceImpl implements OrderBillService {
     }
 
     @Override
-    public Mono<String> insertOrderBill(OrderBill orderBill) {
+    public OrderBill insertOrderBill(OrderBill orderBill) {
         orderBill.setOrderId(this.makeOrderId());
-        return  repo.insert(orderBill)==null ? Mono.just(""): Mono.just(orderBill.getOrderId())  ;
+        return  repo.insert(orderBill) ;
     }
 
     @Override
-    public Mono<Boolean> updateOrderBill(OrderBill orderBill) {
-       return  repo.save(orderBill)==null ? Mono.just(false) :Mono.just(true);
+    public OrderBill updateOrderBill(OrderBill orderBill) {
+       return  repo.save(orderBill);
     }
 
     @Override
-    public Mono<Boolean> deleteOrderBill(String orderId) {
-        try{
+    public void deleteOrderBill(String orderId) {
             repo.deleteById(orderId);
-            return Mono.just(true);
-        }catch (Exception ex){
-            return Mono.just(false);
-        }
     }
 
 
 
     private String makeOrderId(){
-        ScriptOperations scriptOps = mongoTemplate.scriptOps();
+        ScriptOperations scriptOps =  mongoTemplate.scriptOps();
         String orderid= scriptOps.call("makeBillId","orderbill").toString();
         return orderid;
     }

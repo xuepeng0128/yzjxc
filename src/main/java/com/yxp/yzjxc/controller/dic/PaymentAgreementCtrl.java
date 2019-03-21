@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/api/dic/paymentAgreement", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json;charset=UTF-8")
 public class PaymentAgreementCtrl {
@@ -14,31 +16,31 @@ public class PaymentAgreementCtrl {
     PaymentAgreementService svr;
 
     @GetMapping(value = "/paymentAgreementList")
-    public Flux<PaymentAgreement> paymentAgreementList(){
-        Flux<PaymentAgreement> list = svr.paymentAgreementList();
+    public List<PaymentAgreement> paymentAgreementList(){
+        List<PaymentAgreement> list = svr.paymentAgreementList();
         return list;
 
     }
 
     @PostMapping(value="/insertPaymentAgreement")
-    public Mono<PaymentAgreement> insertUnit(@RequestBody PaymentAgreement paymentAgreement)
+    public PaymentAgreement insertPaymentAgreement(@RequestBody PaymentAgreement paymentAgreement)
     {
         return svr.insertPaymentAgreement(paymentAgreement);
     }
 
-    @PostMapping(value="/insertPaymentAgreement")
-    public Mono<PaymentAgreement> updateUnit(@RequestBody PaymentAgreement paymentAgreement)
+    @PostMapping(value="/updatePaymentAgreement")
+    public PaymentAgreement updatePaymentAgreement(@RequestBody PaymentAgreement paymentAgreement)
     {
         return svr.updatePaymentAgreement(paymentAgreement);
     }
 
-    @GetMapping(value="/insertPaymentAgreement")
-    public Mono<String> deletePaymentAgreement(String paymentAgreementId){
+    @GetMapping(value="/deletePaymentAgreement")
+    public String deletePaymentAgreement(String paymentAgreementId){
         try{
             svr.deletePaymentAgreement(Integer.valueOf(paymentAgreementId));
-            return Mono.just("ok");
+            return "ok";
         }catch (Exception ex){
-            return Mono.just(ex.toString());
+            return ex.toString();
         }
     }
 

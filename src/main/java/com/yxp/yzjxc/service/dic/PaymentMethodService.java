@@ -4,9 +4,11 @@ import com.yxp.yzjxc.entity.PaymentMethod;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 public interface PaymentMethodService {
-    public Mono<PaymentMethod> insertPaymentMethod(PaymentMethod paymentMethod);
-    public Mono<PaymentMethod> updatePaymentMethod(PaymentMethod paymentMethod);
+    public PaymentMethod insertPaymentMethod(PaymentMethod paymentMethod);
+    public PaymentMethod updatePaymentMethod(PaymentMethod paymentMethod);
     public void deletePaymentMethod(Integer paymentMethodId);
-    public Flux<PaymentMethod> paymentMethodList();
+    public List<PaymentMethod> paymentMethodList();
 }

@@ -112,13 +112,35 @@ public class InitSysServiceImpl implements InitSysService {
                         "                   { 'menuId' :'00202', 'menuName' :'仓库调拨', 'url' : '/','powers':'', 'subMenu':[ ] }," +
                         "                   { 'menuId' :'00203', 'menuName' :'盘点单', 'url' : '/','powers':'', 'subMenu':[ ] }," +
                         "                   { 'menuId' :'00204', 'menuName' :'库存量表', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "                   { 'menuId' :'00205', 'menuName' :'进销存汇总', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "                   { 'menuId' :'00206', 'menuName' :'单品进销存明细', 'url' : '/','powers':'', 'subMenu':[ ] }," +
                         "               ] " +
                         "   }  ,   " +
                         "   { 'menuId' :'003', 'menuName' :'销售管理', 'url' : '/','powers':'', 'subMenu':[" +
                         "                   { 'menuId' :'00301', 'menuName' :'客户档案', 'url' : '/','powers':'', 'subMenu':[ ] }," +
-                        "                   { 'menuId' :'00302', 'menuName' :'仓库调拨', 'url' : '/','powers':'', 'subMenu':[ ] }," +
-                        "                   { 'menuId' :'00203', 'menuName' :'盘点单', 'url' : '/','powers':'', 'subMenu':[ ] }," +
-                        "                   { 'menuId' :'00204', 'menuName' :'库存量表', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "                   { 'menuId' :'00302', 'menuName' :'总部销售出库单', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "                   { 'menuId' :'00303', 'menuName' :'销售报表', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "                   { 'menuId' :'00304', 'menuName' :'门店设置', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "               ] " +
+                        "   }     " +
+                        "   { 'menuId' :'004', 'menuName' :'财务管理', 'url' : '/','powers':'', 'subMenu':[" +
+                        "                   { 'menuId' :'00401', 'menuName' :'库存明细账', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "                   { 'menuId' :'00402', 'menuName' :'销售明细账', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+
+                        "                   { 'menuId' :'00404', 'menuName' :'单品进销存明细', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "               ] " +
+                        "   }     " +
+                        "   { 'menuId' :'005', 'menuName' :'统计分析', 'url' : '/','powers':'', 'subMenu':[" +
+                        "                   { 'menuId' :'00501', 'menuName' :'库存明细', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "                   { 'menuId' :'00502', 'menuName' :'销售明细', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "                   { 'menuId' :'00503', 'menuName' :'进销存汇总', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "                   { 'menuId' :'00504', 'menuName' :'单品进销存明细', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "               ] " +
+                        "   { 'menuId' :'006', 'menuName' :'字典管理', 'url' : '/','powers':'', 'subMenu':[" +
+                        "                   { 'menuId' :'00601', 'menuName' :'计量单位', 'url' : '/frame/dictionary/unit','powers':'', 'subMenu':[ ] }," +
+                        "                   { 'menuId' :'00602', 'menuName' :'品牌', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "                   { 'menuId' :'00603', 'menuName' :'付款约定', 'url' : '/','powers':'', 'subMenu':[ ] }," +
+                        "                   { 'menuId' :'00604', 'menuName' :'付款方式', 'url' : '/','powers':'', 'subMenu':[ ] }," +
                         "               ] " +
                         "   }     " +
                        "]";

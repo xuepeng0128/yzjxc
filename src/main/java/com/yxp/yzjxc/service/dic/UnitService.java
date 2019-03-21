@@ -7,8 +7,8 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 public interface UnitService {
-    public Mono<Unit> insertUnit(Unit unit);
-    public Mono<Unit> updateUnit(Unit unit);
+    public Unit insertUnit(Unit unit);
+    public Unit updateUnit(Unit unit);
     public void deleteUnit(String unitId);
-    public Flux<Unit> unitList();
+    public List<Unit> unitList();
 }

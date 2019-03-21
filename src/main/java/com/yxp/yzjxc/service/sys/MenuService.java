@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface MenuService {
 
-    public Flux<Menu> menuList();
+    public List<Menu> menuList();
 
 }

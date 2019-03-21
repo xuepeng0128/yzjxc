@@ -9,17 +9,19 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Service
 public class PaymentMethodServiceImpl implements PaymentMethodService {
     @Autowired
     PaymentMethodRepo repo;
     @Override
-    public Mono<PaymentMethod> insertPaymentMethod(PaymentMethod paymentMethod) {
+    public PaymentMethod insertPaymentMethod(PaymentMethod paymentMethod) {
         return repo.insert(paymentMethod);
     }
 
     @Override
-    public Mono<PaymentMethod> updatePaymentMethod(PaymentMethod paymentMethod) {
+    public PaymentMethod updatePaymentMethod(PaymentMethod paymentMethod) {
         return repo.save(paymentMethod);
     }
 
@@ -29,7 +31,7 @@ public class PaymentMethodServiceImpl implements PaymentMethodService {
     }
 
     @Override
-    public Flux<PaymentMethod> paymentMethodList() {
+    public List<PaymentMethod> paymentMethodList() {
         return repo.findAll();
     }
 }

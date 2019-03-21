@@ -5,9 +5,11 @@ import com.yxp.yzjxc.entity.Duty;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 public interface DutyService {
-    public Mono<Duty> insertDuty(Duty duty);
-    public Mono<Duty> updateDuty(Duty duty);
+    public Duty insertDuty(Duty duty);
+    public Duty updateDuty(Duty duty);
     public void deleteDuty(String dutyId);
-    public Flux<Duty> dutyList();
+    public List<Duty> dutyList();
 }

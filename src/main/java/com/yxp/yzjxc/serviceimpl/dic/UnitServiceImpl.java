@@ -16,12 +16,12 @@ public class UnitServiceImpl implements UnitService {
 
 
     @Override
-    public Mono<Unit> insertUnit(Unit unit) {
+    public Unit insertUnit(Unit unit) {
            return repo.insert(unit);
     }
 
     @Override
-    public Mono<Unit> updateUnit(Unit unit) {
+    public Unit updateUnit(Unit unit) {
           return repo.save(unit);
     }
 
@@ -31,8 +31,8 @@ public class UnitServiceImpl implements UnitService {
     }
 
     @Override
-    public Flux<Unit> unitList() {
-        Flux<Unit> list =repo.findAll();
+    public List<Unit> unitList() {
+        List<Unit> list =repo.findAll();
         return list;
     }
 }

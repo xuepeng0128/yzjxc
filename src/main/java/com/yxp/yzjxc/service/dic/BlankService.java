@@ -4,9 +4,11 @@ import com.yxp.yzjxc.entity.Blank;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 public interface BlankService {
-    public Mono<Blank> insertBlank(Blank blank);
-    public Mono<Blank> updateBlank(Blank blank);
+    public Blank insertBlank(Blank blank);
+    public Blank updateBlank(Blank blank);
     public void deleteBlank(String blankId);
-    public Flux<Blank> blankList();
+    public List<Blank> blankList();
 }

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/api/dic/blank", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json;charset=UTF-8")
 
@@ -15,31 +17,32 @@ public class BlankCtrl {
     BlankService svr;
 
     @GetMapping(value = "/blankList")
-    public Flux<Blank> blankList(){
-        Flux<Blank> list = svr.blankList();
+    public List<Blank> blankList(){
+        List<Blank> list = svr.blankList();
         return list;
 
     }
 
     @PostMapping(value="/insertBlank")
-    public Mono<Blank> insertUnit(@RequestBody Blank blank)
+    public Blank insertBlank(@RequestBody Blank blank)
     {
+
         return svr.insertBlank(blank);
     }
 
-    @PostMapping(value="/insertBlank")
-    public Mono<Blank> updateUnit(@RequestBody Blank blank)
+    @PostMapping(value="/updateBlank")
+    public Blank updateBlank(@RequestBody Blank blank)
     {
         return svr.updateBlank(blank);
     }
 
-    @GetMapping(value="/insertBlank")
-    public Mono<String> deleteBlank(String blankId){
+    @GetMapping(value="/deleteBlank")
+    public String deleteBlank(String blankId){
         try{
             svr.deleteBlank(blankId);
-            return Mono.just("ok");
+            return "ok";
         }catch (Exception ex){
-            return Mono.just(ex.toString());
+            return ex.toString();
         }
     }
 

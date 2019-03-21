@@ -17,32 +17,42 @@ public class UnitCtrl {
     private UnitService svr;
 
    @GetMapping(value = "/unitList")
-   public Flux<Unit> unitList(){
+   public List<Unit> unitList(){
 
-       Flux<Unit> list = svr.unitList();
+       List<Unit> list = svr.unitList();
        return list;
 
    }
 
    @PostMapping(value="/insertUnit")
-    public Mono<Unit> insertUnit(@RequestBody Unit unit)
+    public String insertUnit(@RequestBody Unit unit)
    {
-          return svr.insertUnit(unit);
+          Unit insertUnit=svr.insertUnit(unit);
+          if (insertUnit !=null){
+                 return insertUnit.getUnitId();
+          }else {
+                 return  "fail";
+          }
    }
 
-    @PostMapping(value="/insertUnit")
-    public Mono<Unit> updateUnit(@RequestBody Unit unit)
+    @PostMapping(value="/updateUnit")
+    public String updateUnit(@RequestBody Unit unit)
     {
-        return svr.updateUnit(unit);
+        Unit updateUnit=svr.updateUnit(unit);
+        if (updateUnit !=null){
+            return updateUnit.getUnitId();
+        }else {
+            return  "fail";
+        }
     }
 
-    @GetMapping(value="/insertUnit")
-    public Mono<String> deleteUnit(String unitId){
+    @GetMapping(value="/deleteUnit")
+    public String deleteUnit(String unitId){
         try{
              svr.deleteUnit(unitId);
-             return Mono.just("ok");
+             return "ok";
         }catch (Exception ex){
-            return Mono.just(ex.toString());
+            return "fail";
         }
     }
 

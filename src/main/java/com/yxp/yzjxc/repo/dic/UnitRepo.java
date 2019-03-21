@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UnitRepo extends ReactiveMongoRepository<Unit,String> {
+public interface UnitRepo extends MongoRepository<Unit,String> {
 }

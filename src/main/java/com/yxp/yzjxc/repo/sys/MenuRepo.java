@@ -7,6 +7,6 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MenuRepo extends ReactiveMongoRepository<Menu,String> {
+public interface MenuRepo extends MongoRepository<Menu,String> {
 
 }

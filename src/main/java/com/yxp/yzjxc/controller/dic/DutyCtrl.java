@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/api/dic/duty", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json;charset=UTF-8")
 public class DutyCtrl {
@@ -15,34 +17,32 @@ public class DutyCtrl {
     DutyService svr;
 
     @GetMapping(value = "/dutyList")
-    public Flux<Duty> dutyList(){
-        Flux<Duty> list = svr.dutyList();
+    public List<Duty> dutyList(){
+        List<Duty> list = svr.dutyList();
         return list;
 
     }
 
     @PostMapping(value="/insertDuty")
-    public Mono<Duty> insertUnit(@RequestBody Duty duty)
+    public Duty insertDuty(@RequestBody Duty duty)
     {
         return svr.insertDuty(duty);
     }
 
-    @PostMapping(value="/insertDuty")
-    public Mono<Duty> updateUnit(@RequestBody Duty duty)
+    @PostMapping(value="/updateDuty")
+    public Duty updateUnit(@RequestBody Duty duty)
     {
         return svr.updateDuty(duty);
     }
 
-    @GetMapping(value="/insertDuty")
-    public Mono<String> deleteDuty(String dutyId){
+    @GetMapping(value="/deleteDuty")
+    public String deleteDuty(String dutyId){
         try{
             svr.deleteDuty(dutyId);
-            return Mono.just("ok");
+            return "ok";
         }catch (Exception ex){
-            return Mono.just(ex.toString());
+            return ex.toString();
         }
     }
-    
-    
-    
+
 }

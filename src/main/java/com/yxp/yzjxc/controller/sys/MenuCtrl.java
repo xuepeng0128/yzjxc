@@ -19,9 +19,9 @@ public class MenuCtrl {
     private MenuService svr;
 
     @GetMapping(value="/menuList")
-    public Flux<Menu> menuList(){
+    public List<Menu> menuList(){
         MessageModel m = new MessageModel();
-        Flux<Menu> list =svr.menuList();
+        List<Menu> list =svr.menuList();
         return list;
     }
 

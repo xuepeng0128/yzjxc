@@ -8,17 +8,19 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Service
 public class BlankServiceImpl implements BlankService {
     @Autowired
     BlankRepo repo;
     @Override
-    public Mono<Blank> insertBlank(Blank blank) {
+    public Blank insertBlank(Blank blank) {
         return  repo.insert(blank);
     }
 
     @Override
-    public Mono<Blank> updateBlank(Blank blank) {
+    public Blank updateBlank(Blank blank) {
         return repo.save(blank);
     }
 
@@ -28,7 +30,7 @@ public class BlankServiceImpl implements BlankService {
     }
 
     @Override
-    public Flux<Blank> blankList() {
+    public List<Blank> blankList() {
         return repo.findAll();
     }
 }

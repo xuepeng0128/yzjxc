@@ -8,17 +8,19 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Service
 public class DutyServiceImpl implements DutyService {
     @Autowired
     DutyRepo repo;
     @Override
-    public Mono<Duty> insertDuty(Duty duty) {
+    public Duty insertDuty(Duty duty) {
           return repo.insert(duty);
     }
 
     @Override
-    public Mono<Duty> updateDuty(Duty duty) {
+    public Duty updateDuty(Duty duty) {
         return repo.save(duty);
     }
 
@@ -28,7 +30,7 @@ public class DutyServiceImpl implements DutyService {
     }
 
     @Override
-    public Flux<Duty> dutyList() {
+    public List<Duty> dutyList() {
         return repo.findAll();
     }
 }

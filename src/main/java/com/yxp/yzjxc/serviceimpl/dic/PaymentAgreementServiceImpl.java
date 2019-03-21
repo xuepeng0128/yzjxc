@@ -8,17 +8,19 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Service
 public class PaymentAgreementServiceImpl implements PaymentAgreementService {
     @Autowired
     PaymentAgreementRepo repo;
     @Override
-    public Mono<PaymentAgreement> insertPaymentAgreement(PaymentAgreement paymentAgreement) {
+    public PaymentAgreement insertPaymentAgreement(PaymentAgreement paymentAgreement) {
         return repo.insert(paymentAgreement);
     }
 
     @Override
-    public Mono<PaymentAgreement> updatePaymentAgreement(PaymentAgreement paymentAgreement) {
+    public PaymentAgreement updatePaymentAgreement(PaymentAgreement paymentAgreement) {
         return repo.save(paymentAgreement);
     }
 
@@ -28,7 +30,7 @@ public class PaymentAgreementServiceImpl implements PaymentAgreementService {
     }
 
     @Override
-    public Flux<PaymentAgreement> paymentAgreementList() {
+    public List<PaymentAgreement> paymentAgreementList() {
         return repo.findAll();
     }
 }

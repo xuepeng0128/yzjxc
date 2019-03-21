@@ -14,8 +14,8 @@ public class MenuServiceImpl implements MenuService {
     @Autowired
     private MenuRepo repo;
     @Override
-    public Flux<Menu> menuList() {
-        Flux<Menu> list = repo.findAll();
+    public List<Menu> menuList() {
+        List<Menu> list = repo.findAll();
         return list;
     }
 }
